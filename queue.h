@@ -25,7 +25,10 @@
             ~Queue();
 
             std::ostream& operator<<(std::ostream&) const;
-
+            Queue& operator=(std::initializer_list<T>);
+            Queue& operator=(const Queue&);
+            Queue& operator=(Queue&&);
+            
             size_t size() const;
 
             T front() const;

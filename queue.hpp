@@ -89,6 +89,67 @@
         }
 
         template <typename T>
+        Queue<T>& Queue<T>::operator=(std::initializer_list<T> list)
+        {
+            m_start = 0;
+            m_end = list.size();
+
+            if (m_end > m_capacity)
+            {
+                realloc();
+            }
+
+            int i = 0;
+            for (auto& elem : list)
+            {
+                m_ptr[i] = elem;
+                ++i;
+            }
+
+            return *this;
+        }
+
+        template <typename T>
+        Queue<T>& Queue<T>::operator=(const Queue<T>& other)
+        {
+            if (this != &other)
+            {
+                m_start = 0;
+                m_end = other.size();
+
+                if (m_end > m_capacity)
+                {
+                    realloc();
+                }
+
+                for (int i = other.m_start, j = 0; i < other.m_end; ++i, ++j)
+                {
+                    m_ptr[j] = other.m_ptr[i];
+                }
+            }
+
+            return *this;
+        }
+
+        template <typename T>
+        Queue<T>& Queue<T>::operator=(Queue<T>&& other)
+        {
+            m_start = other.m_start;
+            m_end = other.m_end;
+            m_capacity = other.m_capacity;
+            m_ptr = other.m_ptr;
+
+            other.m_start = 0;
+            other.m_end = 0;
+            m_capacity = 0;
+            m_ptr = nullptr;
+
+            return *this;
+        }
+
+
+
+        template <typename T>
         void Queue<T>::realloc()
         {
             if (m_capacity / 2 > size() / 2)

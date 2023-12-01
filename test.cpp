@@ -8,8 +8,10 @@ int main()
     {
         obj.push(i);
     }
+
+    Hayk::Queue<int> obj1 = {1, 2, 3, 4};
+    obj1 = obj;
  
-    std::cout << obj.size() << ' ' << obj.front() << ' ' << obj.rear() << std::endl;
-    std::cout << obj << std::endl;
+    std::cout << obj1 << std::endl;
     return 0;
 }
