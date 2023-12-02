@@ -30,6 +30,7 @@
             Queue& operator=(Queue&&);
             
             size_t size() const;
+            size_t capacity() const;
 
             T front() const;
             T rear() const;

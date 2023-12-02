@@ -152,7 +152,7 @@
         template <typename T>
         void Queue<T>::realloc()
         {
-            if (m_capacity / 2 > size() / 2)
+            if (m_capacity / 2 > size())
             {
                 for (int i = m_start, j = 0; i < m_end; ++i, ++j)
                 {
@@ -186,6 +186,12 @@
         size_t Queue<T>::size() const
         {
             return m_end - m_start;
+        }
+
+        template <typename T>
+        size_t Queue<T>::capacity() const
+        {
+            return m_capacity;
         }
 
         template <typename T>
